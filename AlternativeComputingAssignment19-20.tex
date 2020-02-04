@@ -1,0 +1,226 @@
+\documentclass{article}
+\usepackage{braket}
+\usepackage{amsmath,amsthm,amssymb}
+
+\addtolength{\oddsidemargin}{-.875in}
+	\addtolength{\evensidemargin}{-.875in}
+	\addtolength{\textwidth}{1.75in}
+
+	\addtolength{\topmargin}{-.875in}
+	\addtolength{\textheight}{1.75in}
+
+\begin{document}
+
+\begin{center}
+	\LARGE{Alternative Computing Summative Assignment}\\[0.1cm]
+	\Large{Dr Eleni Akrida and Dr Barnaby Martin}\\[0.1cm]
+	2020\\[0.5cm]
+\end{center}
+
+\begin{center}
+\large
+{\bf Quantum Computing Assignment: Dr Eleni Akrida}\bigskip
+
+\normalsize
+\end{center}
+
+\noindent\underline{Part A}:
+
+\begin{enumerate}
+	\item \label{ex1} Which of the following pairs of expressions represent the same quantum
+	state?\\
+	Justify your answers.  \hfill{\bf [25 marks]}\smallskip
+	\begin{enumerate}
+		\item $\frac{1}{\sqrt{2}} \bigl(\ket{+} + \ket{-}\bigr)$ and $\ket0$.
+
+\begin{align*}
+    \frac{1}{\sqrt{2}} \bigl(\ket{+} + \ket{-}\bigr)  &= \frac{1}{\sqrt{2}} \cdot \bigl(\frac{1}{\sqrt{2}}\ket{0} + \frac{1}{\sqrt{2}}\ket{1} + \frac{1}{\sqrt{2}}\ket{0} - \frac{1}{\sqrt{2}}\ket{1}\bigr) \\
+    &= \frac{1}{\sqrt{2}} \cdot \bigl(\frac{2}{\sqrt{2}} \ket{0} \bigl) \\
+    &= \frac{2}{2} \cdot \ket{0} \\
+    &= \ket{0} &&\qedhere
+\end{align*}
+
+These expressions therefore represent the same quantum state.
+\newline
+
+		\item $i \ket{1}$ and $\frac{1+i}{\sqrt{2}} \ket{1}$.
+\newline
+\newline
+As quantum states are directions, the state represented by $\ket{1}$ does not change when multipled by (complex) constant. These expressions therefore represent the same quantum state.
+\newline
+
+		\item $\frac{1}{\sqrt{2}} \bigl(\ket{-} + \ket{+}\bigr)$ and $\frac{1}{\sqrt{2}} \bigl(\ket{i} + \ket{-i}\bigr)$.
+
+\begin{align*}
+    \frac{1}{\sqrt{2}} \bigl(\ket{i} + \ket{-i}\bigr)  &= \frac{1}{\sqrt{2}} \cdot \bigl(\frac{1}{\sqrt{2}}\ket{0} + \frac{i}{\sqrt{2}}\ket{1} + \frac{1}{\sqrt{2}}\ket{0} - \frac{-i}{\sqrt{2}}\ket{1}\bigr) \\
+    &= \frac{1}{\sqrt{2}} \cdot \bigl(\frac{2}{\sqrt{2}} \ket{0} \bigl) \\
+    &= \frac{2}{2} \cdot \ket{0} \\
+    &= \ket{0} \\
+    &=  \frac{1}{\sqrt{2}} \bigl(\ket{+} + \ket{-}\bigr) &&\text{(as proven in part a))}&&\qedhere
+\end{align*}
+
+These expressions therefore represent the same quantum state.
+\clearpage
+
+		\item $ \bigl(\frac{\sqrt{3}}{2} \ket0 + \frac{1}{2} \ket1\bigr) $ and $ \bigl( \frac{\sqrt{6} + \sqrt{2}}{4} \ket{+} + \frac{\sqrt{6} - \sqrt{2}}{4} \ket{-}\bigr)$.
+
+\begin{align*}
+    \bigl(\frac{\sqrt{6} + \sqrt{2}}{4} \ket{+} + \frac{\sqrt{6} - \sqrt{2}}{4} \ket{-}\bigr)  &= 
+	 \frac{\sqrt{6} + \sqrt{2}}{4\sqrt{2}} \cdot \bigl(\ket{0} + \ket{1}\bigr) +  \frac{\sqrt{6} - \sqrt{2}}{4\sqrt{2}} \cdot \bigl(\ket{0} - \ket{1}\bigr) \\
+    &= \frac{\sqrt{3} + 1}{4} \ket{0} + \frac{\sqrt{3} + 1}{4} \ket{1} + \frac{\sqrt{3} - 1}{4} \ket{0} - \frac{\sqrt{3} - 1}{4} \ket{1} \\
+    &= \frac{(\sqrt{3} + 1)\ket{0} + (\sqrt{3} + 1)\ket{1} + (\sqrt{3} - 1)\ket{0} - (\sqrt{3} - 1)\ket{0}}{4} \\
+    &= \frac{2 \sqrt{3} \ket{0} + 2 \ket{1}}{4} \\
+    &= \frac{\sqrt{3}}{2}\ket{0} + \frac{1}{2}\ket{1}  &&\qedhere
+\end{align*}
+
+These expressions therefore represent the same quantum state.
+\newline
+
+		\item $\frac{1}{\sqrt{2}} \bigl(\ket{i} - \ket{-i}\bigr)$ and $\ket0$.
+	
+\begin{align*}
+   \frac{1}{\sqrt{2}} \bigl(\ket{i} - \ket{-i}\bigr)  &= \frac{1}{2} \bigl(\ket{0} + i\ket{1}\bigr) - \frac{1}{2} \bigl(\ket{0} - i\ket{1}\bigr) \\
+    &= \frac{i}{2} \ket{1} + \frac{i}{2} \ket{1}  \\
+    &= i \ket{1} \\
+    &\neq \ket{0} &&\qedhere
+\end{align*}
+
+These expressions therefore do not represent the same quantum state.
+
+\end{enumerate}
+
+	\item \label{ex2} For each state and measurement basis, describe the possible outcomes
+	of a measurement of that state with respect to that basis and give the
+	probability of each outcome. \hfill{\bf [25 marks]}\smallskip
+	
+	\begin{enumerate}
+
+		\item $\bigl( \frac{3i}{4} \ket{+} - \frac{\sqrt{7}}{4} \ket{-} \bigr) $ and $\{\ket0, \ket1\}$.
+%a
+\begin{align*}
+   \frac{3i}{4} \ket{+} - \frac{\sqrt{7}}{4} \ket{-} &= \frac{3i}{4\sqrt{2}} \bigl(\ket{0} + \ket{1}\bigr) - \frac{\sqrt{7}}{4\sqrt{2}} \bigl(\ket{0} - \ket{1}\bigl) \\
+    &= \frac{-\sqrt{7} + 3i}{4\sqrt{2}} \ket{0} + \frac{\sqrt{7} + 3i}{4\sqrt{2}} \ket{1}  &&\qedhere
+\end{align*}
+
+The probability of this outcome for $\ket{0}$:
+
+\begin{align*}
+  |\frac{-\sqrt{7}}{4\sqrt{2}} + \frac{3}{4\sqrt{2}}i|^2 &= \frac{1}{2} \\ &&\qedhere
+\end{align*}
+
+The probability of this outcome for $\ket{1}$:
+
+\begin{align*}
+  |\frac{\sqrt{7}}{4\sqrt{2}} + \frac{3}{4\sqrt{2}}i|^2 &= \frac{1}{2} \\ &&\qedhere
+\end{align*}
+
+		\item $ \frac{1}{\sqrt{2}} \bigl( \ket{0} - \ket{1} \bigr) $ and $\{\ket{i}, \ket{-i}\}$.
+
+%b
+\begin{align*}
+	\ket{0} = \frac{1}{2} \bigl(\ket{i} + \ket{-i}\bigr) &&\text{(as proven in part 1.c)} \\
+\end{align*}
+
+\begin{align*}
+	\ket{i} - \ket{-i} &= \frac{2i}{\sqrt{2}} \ket{i} &&\qedhere
+\end{align*}
+
+		\item $-\ket{i}$ and $\{\ket0, \ket1\}$.
+
+%c
+
+\begin{align*}
+	-\ket{i} = -\frac{1}{\sqrt{2}} \bigl(\ket{0} + \ket{1}\bigr) \\
+\end{align*}
+
+The probability of this outcome for $\ket{0}$:
+
+\begin{align*}
+  |\frac{-1}{\sqrt{2}}|^2 = \frac{1}{2} \\ &&\qedhere
+\end{align*}
+
+The probability of this outcome for $\ket{1}$:
+
+\begin{align*}
+  |\frac{-i}{\sqrt{2}}|^2 = \frac{1}{2} \\ &&\qedhere
+\end{align*}
+
+		\item $ \frac{1}{\sqrt{2}} \bigl( \ket{0} - \ket{1} \bigr) $ and $\{\ket{i}, \ket{-i}\}$.
+
+%d
+\begin{align*}
+	\ket{0} = \frac{1}{2} \bigl(\ket{+} + \ket{-}\bigr) &&\text{(as proven in part 1.a)}
+\end{align*}
+
+\begin{align*}
+\ket{+} - \ket{-} &= \frac{1}{\sqrt{2}} \cdot \bigl(\frac{1}{\sqrt{2}}\ket{0} + \frac{1}{\sqrt{2}}\ket{1} - \frac{1}{\sqrt{2}}\ket{0} + \frac{1}{\sqrt{2}}\ket{1}\bigr) \\
+    		&= \frac{1}{\sqrt{2}} \cdot \bigl(\frac{2}{\sqrt{2}} \ket{1} \bigl) \\
+    		&= \frac{2}{2} \cdot \ket{1} \\
+   		&= \ket{0} &&\qedhere
+\end{align*}
+
+
+
+
+		\item $\frac{1}{\sqrt{2}} \bigl(\ket{i} - \ket{-i}\bigr)$ and $\{\ket{+}, \ket{-}\}$.
+		\item $\frac{\sqrt{3}}{2} \ket{+} - \frac{1}{2} \ket{-}$ and $\{\ket{i}, \ket{-i}\}$.
+	\end{enumerate}
+
+\end{enumerate}
+
+\newpage
+
+\begin{center}
+\large
+{\bf Natural Computing Assignment: Dr Barnaby Martin}\bigskip
+
+{\bf The Artificial Bee Colony (ABC) algorithm}
+\normalsize
+\end{center}
+
+\noindent\underline{Part A}: Provide a synopsis of \cite{KB07}. \hfill{\bf [50 marks]}\smallskip
+
+\noindent You should read the paper and present a condensed version of it so as to provide:
+
+\begin{itemize}
+
+\item relevant background material\hfill[5 marks]
+
+\item a detailed pseudocode description of the ABC algorithm\hfill[15 marks]
+
+\item a natural language description of the ABC algorithm\hfill[10 marks]
+
+\item details of the experiments\hfill[15 marks]
+
+\item an overview of the results.\hfill[5 marks]
+
+\end{itemize}
+You should define all concepts used and give a very brief overview of the comparator algorithms and the benchmark functions used in the experimental section. Your synopsis should be written using Latex (use the settings of this Latex file) and compiled into pdf (only the pdf should be handed in); there should be a section for each of the 5 bullet-points above (your pseudocode and natural language descriptions should cross-reference one another); and the report should be no more than 4 pages in length (excluding references). After reading your report, a reader should be able to implement the ABC algorithm. You will be given marks for clarity and quality of explanation.\bigskip
+
+\noindent\underline{Part B}: The ABC algorithm was extended in \cite{KG11} and \cite{XBY11} so as to solve the Travelling Salesman Problem. Provide a synopsis of \cite{KG11} and explain the concept of path-relinking from \cite{XBY11}. \hfill{\bf [25 marks]}\smallskip
+
+\noindent Read the papers \cite{KG11} and \cite{XBY11}.
+
+\begin{itemize}
+
+\item You should proceed with paper \cite{KG11} as in Part A, although there is no need to repeat what you have written above. You should focus on the key differences in the application of the ABC algorithm to the Travelling Salesman problem as opposed to the benchmark functions in \cite{KB07}.\hfill[15 marks]
+
+\item You should outline the concept of path-relinking from \cite{XBY11} and how it is incorporated within the ABC algorithm.\hfill[10 marks]
+
+\item Your pdf report should use no more than 2 pages (and be produced from Latex as above).
+
+\end{itemize}
+
+
+\begin{thebibliography}{99}
+
+\bibitem{KB07} D. Karaboga and B. Basturk, A powerful and efficient algorithm for numerical function optimization: artificial been colony (ABC) algorithm, \emph{J. Glob. Optim.\/} 39 (2007) 459--471.
+
+\bibitem{KG11} D. Karaboga and B. Gorkemli, A combinatorial artifical bee colony algorithm for Travelling Salesman problem, \emph{Proc. of Int. Symp. on Innovations in Intelligent Systems and Applications \emph{(}INISTA\/}), IEEE Press (2011) 50--53.
+
+\bibitem{XBY11} X. Zhang, Q. Bai and X. Yun, A new hybrid artificial bee colony algorithm for the Traveling Salesman Problem, \emph{Proc. of \emph{3}rd Int. Conf. on Communication Software and Networks \emph{(}ICCSN\/}), IEEE Press (2011) 155--159.
+
+\end{thebibliography}
+
+
+\end{document}
