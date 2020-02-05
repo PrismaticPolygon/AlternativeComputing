@@ -71,6 +71,8 @@
 
 The Artificial Bee Colony (ABC) algorithm is an optimisation algorithm based on the foraging behaviour of the honeybee swarm. 
 
+\clearpage
+
 \section{Pseudocode}
 
 \begin{algorithm}
@@ -86,8 +88,6 @@ The Artificial Bee Colony (ABC) algorithm is an optimisation algorithm based on 
 \State $generations$: number of generations
 % The number of cycles
 \State $C_{max}$: number of cycles
-
-% So we have a big od cycle.
 
 \BState \emph{begin}:
 
@@ -136,6 +136,39 @@ The Artificial Bee Colony (ABC) algorithm is an optimisation algorithm based on 
 \section{Natural language description}
 
 \section{Details of experiments}
+
+The paper used 5 classic optimisation benchmark functions, sourced from \cite{srinivasan_2003} to test the performance of ABC against PSO, PS-EA, and GA:
+
+\begin{itemize}
+	\item{Griewank: the Griewank function has a product term that introduce interdependence between variables. Algorithms that seek to optimise each variable independently will therefore do poorly.}
+	\item{Rastrigin: the Rastrigin function produces many local, regularly distributed minima, so that an optimisation algorithm can be easily trapped.}
+	\item{Rosenbrock: the Rosenbrock function produces a global minimum inside a long, narrow, parabolic valley. Converging is difficult. It is used to test the performance of an algorithm.}
+	\item{Ackley: the Ackley function tests whether an algorithm effectively combines exploration and exploitation}
+	\item{Schwefel: the Schwefel function produce a complex map, with a second-best minimum far from the global minimum, which itself is close to the bounds of the domain.}
+\end{itemize}
+
+The paper used the maximum number of generations as $500$, $750$, and $1000$ for dimensions of $10$, $20$, and $30$, respectively. A population size of 125 was used as per \cite{srinivasan_2003}
+
+The GA used used single-point uniform crossover with probability $P_c = 0.95$, with individuals selected randomly. 
+Single-point uniform crossover switches two genes at the same place in each individual. 
+
+
+Gaussian mutation with probability $P_m = 0.1$, and a linear ranking fitness function.
+
+The maximum number of cycles (MCN) is equivalent to the maximum number of generations, and the colony size equals the population size. $50\%$ of the colony were onlookers; $50\%$ were employees, and 1 was a scout.
+
+Each experiment was repeated 30 times, with different random seeds. The mean function values of the best solutions found by the algorithms for different dimensions were recorded.
+
+The performance of PS-EA deteriorated in optimising.
+
+The ABC algorithm can both escape local optima and converge to the global optimum. The exploration faciliated by scouts is good for global optimisation, and the exploitation facilitated by onlookers and employees is good for local optimisation.
+
+PS-EA (Particle Swarm - Evolutionary Algorithm) is a PSO / EA hybrid. It uses several mechanisms to adaptively update individuals based on the convergence rate or status of the algorithm in a particular iteration.
+
+
+The paper found the ABC algorithm to be successful in optimising both multivariable and multimodal functions.
+
+
 
 \section{Overview of results}
 

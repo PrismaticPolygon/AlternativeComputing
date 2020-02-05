@@ -54,20 +54,17 @@ As quantum states are directions, the state represented by $\ket{1}$ does not ch
 \begin{align*}
     \frac{1}{\sqrt{2}} \bigl(\ket{i} + \ket{-i}\bigr)  &= \frac{1}{\sqrt{2}} \cdot \bigl(\frac{1}{\sqrt{2}}\ket{0} + \frac{i}{\sqrt{2}}\ket{1} + \frac{1}{\sqrt{2}}\ket{0} - \frac{-i}{\sqrt{2}}\ket{1}\bigr) \\
     &= \frac{1}{\sqrt{2}} \cdot \bigl(\frac{2}{\sqrt{2}} \ket{0} \bigl) \\
-    &= \frac{2}{2} \cdot \ket{0} \\
     &= \ket{0} \\
     &=  \frac{1}{\sqrt{2}} \bigl(\ket{+} + \ket{-}\bigr) &&\text{(as proven in part a))}&&\qedhere
 \end{align*}
 
 These expressions therefore represent the same quantum state.
-\clearpage
 
 		\item $ \bigl(\frac{\sqrt{3}}{2} \ket0 + \frac{1}{2} \ket1\bigr) $ and $ \bigl( \frac{\sqrt{6} + \sqrt{2}}{4} \ket{+} + \frac{\sqrt{6} - \sqrt{2}}{4} \ket{-}\bigr)$.
 
 \begin{align*}
-    \bigl(\frac{\sqrt{6} + \sqrt{2}}{4} \ket{+} + \frac{\sqrt{6} - \sqrt{2}}{4} \ket{-}\bigr)  &= 
-	 \frac{\sqrt{6} + \sqrt{2}}{4\sqrt{2}} \cdot \bigl(\ket{0} + \ket{1}\bigr) +  \frac{\sqrt{6} - \sqrt{2}}{4\sqrt{2}} \cdot \bigl(\ket{0} - \ket{1}\bigr) \\
-    &= \frac{\sqrt{3} + 1}{4} \ket{0} + \frac{\sqrt{3} + 1}{4} \ket{1} + \frac{\sqrt{3} - 1}{4} \ket{0} - \frac{\sqrt{3} - 1}{4} \ket{1} \\
+    \frac{\sqrt{6} + \sqrt{2}}{4} \ket{+} + \frac{\sqrt{6} - \sqrt{2}}{4} \ket{-}  &= 
+	 \frac{\sqrt{6} + \sqrt{2}}{4\sqrt{2}} \bigl(\ket{0} + \ket{1}\bigr) +  \frac{\sqrt{6} - \sqrt{2}}{4\sqrt{2}} \bigl(\ket{0} - \ket{1}\bigr) \\
     &= \frac{(\sqrt{3} + 1)\ket{0} + (\sqrt{3} + 1)\ket{1} + (\sqrt{3} - 1)\ket{0} - (\sqrt{3} - 1)\ket{0}}{4} \\
     &= \frac{2 \sqrt{3} \ket{0} + 2 \ket{1}}{4} \\
     &= \frac{\sqrt{3}}{2}\ket{0} + \frac{1}{2}\ket{1}  &&\qedhere
@@ -79,8 +76,7 @@ These expressions therefore represent the same quantum state.
 		\item $\frac{1}{\sqrt{2}} \bigl(\ket{i} - \ket{-i}\bigr)$ and $\ket0$.
 	
 \begin{align*}
-   \frac{1}{\sqrt{2}} \bigl(\ket{i} - \ket{-i}\bigr)  &= \frac{1}{2} \bigl(\ket{0} + i\ket{1}\bigr) - \frac{1}{2} \bigl(\ket{0} - i\ket{1}\bigr) \\
-    &= \frac{i}{2} \ket{1} + \frac{i}{2} \ket{1}  \\
+   \frac{1}{\sqrt{2}} \bigl(\ket{i} - \ket{-i}\bigr)  &= \frac{1}{2} \bigl(\ket{0} + i\ket{1} - \ket{0} - i\ket{1}\bigr) \\
     &= i \ket{1} \\
     &\neq \ket{0} &&\qedhere
 \end{align*}
@@ -105,65 +101,164 @@ These expressions therefore do not represent the same quantum state.
 The probability of this outcome for $\ket{0}$:
 
 \begin{align*}
-  |\frac{-\sqrt{7}}{4\sqrt{2}} + \frac{3}{4\sqrt{2}}i|^2 &= \frac{1}{2} \\ &&\qedhere
+  |\frac{-\sqrt{7}}{4\sqrt{2}} + \frac{3}{4\sqrt{2}}i|^2 &= \frac{1}{2} \\
 \end{align*}
 
 The probability of this outcome for $\ket{1}$:
 
 \begin{align*}
-  |\frac{\sqrt{7}}{4\sqrt{2}} + \frac{3}{4\sqrt{2}}i|^2 &= \frac{1}{2} \\ &&\qedhere
+  |\frac{\sqrt{7}}{4\sqrt{2}} + \frac{3}{4\sqrt{2}}i|^2 &= \frac{1}{2} \\
 \end{align*}
 
 		\item $ \frac{1}{\sqrt{2}} \bigl( \ket{0} - \ket{1} \bigr) $ and $\{\ket{i}, \ket{-i}\}$.
 
 %b
 \begin{align*}
-	\ket{0} = \frac{1}{2} \bigl(\ket{i} + \ket{-i}\bigr) &&\text{(as proven in part 1.c)} \\
+	\ket{i} + \ket{-i} = \sqrt{2} \ket{0} \Rightarrow \ket{0} = \frac{1}{\sqrt{2}} \bigl(\ket{i} + \ket{-i}\bigr) \\
+        \ket{i} - \ket{-i} = i\sqrt{2} \ket{1} \Rightarrow \ket{1} = \frac{-i}{\sqrt{2}} \bigl(\ket{i} - \ket{-i}\bigr) \\
 \end{align*}
 
 \begin{align*}
-	\ket{i} - \ket{-i} &= \frac{2i}{\sqrt{2}} \ket{i} &&\qedhere
+	\frac{1}{\sqrt{2}} \bigl( \ket{0} - \ket{1} \bigr) &= \frac{1}{\sqrt{2}} \bigl(\frac{1}{\sqrt{2}} \bigl(\ket{i} + \ket{-i}\bigr) - \frac{-i}{\sqrt{2}}\bigr(\ket{i} - \ket{i}\bigl)\bigl) \\
+	&= \bigl(\frac{1}{2} - \frac{i}{2}\bigr)\ket{i} + \bigl(\frac{1}{2} + \frac{i}{2}\bigr)\ket{-i} \\ 
 \end{align*}
+
+The probability of this outcome for $\ket{i}$:
+
+\begin{align*}
+  |\frac{1}{2} - \frac{i}{2}|^2 &= \frac{1}{2} \\
+\end{align*}
+
+The probability of this outcome for $\ket{-i}$:
+
+\begin{align*}
+  |\frac{1}{2} + \frac{i}{2}|^2 &= \frac{1}{2} \\
+\end{align*}
+
 
 		\item $-\ket{i}$ and $\{\ket0, \ket1\}$.
 
 %c
 
 \begin{align*}
-	-\ket{i} = -\frac{1}{\sqrt{2}} \bigl(\ket{0} + \ket{1}\bigr) \\
+	-\ket{i} &= -\frac{1}{\sqrt{2}} \bigl(\ket{0} + i\ket{1}\bigr) \\
+	&= \frac{-1}{\sqrt{2}}\ket{0} + \frac{-i}{\sqrt{2}} \ket{1}
 \end{align*}
 
 The probability of this outcome for $\ket{0}$:
 
 \begin{align*}
-  |\frac{-1}{\sqrt{2}}|^2 = \frac{1}{2} \\ &&\qedhere
+  |\frac{-1}{\sqrt{2}}|^2 = \frac{1}{2} \\ 
 \end{align*}
 
 The probability of this outcome for $\ket{1}$:
 
 \begin{align*}
-  |\frac{-i}{\sqrt{2}}|^2 = \frac{1}{2} \\ &&\qedhere
+  |\frac{-i}{\sqrt{2}}|^2 = \frac{1}{2} \\
 \end{align*}
 
 		\item $ \frac{1}{\sqrt{2}} \bigl( \ket{0} - \ket{1} \bigr) $ and $\{\ket{i}, \ket{-i}\}$.
 
 %d
 \begin{align*}
-	\ket{0} = \frac{1}{2} \bigl(\ket{+} + \ket{-}\bigr) &&\text{(as proven in part 1.a)}
+	\ket{+} + \ket{-} = \sqrt{2} \ket{0} \Rightarrow \ket{0} = \frac{1}{\sqrt{2}} \bigl(\ket{+} + \ket{-}\bigr) \\
+	\ket{+} - \ket{-} = \sqrt{2} \ket{1} \Rightarrow \ket{1} = \frac{1}{\sqrt{2}} \bigl(\ket{+} - \ket{-}\bigr) \\
 \end{align*}
 
 \begin{align*}
-\ket{+} - \ket{-} &= \frac{1}{\sqrt{2}} \cdot \bigl(\frac{1}{\sqrt{2}}\ket{0} + \frac{1}{\sqrt{2}}\ket{1} - \frac{1}{\sqrt{2}}\ket{0} + \frac{1}{\sqrt{2}}\ket{1}\bigr) \\
-    		&= \frac{1}{\sqrt{2}} \cdot \bigl(\frac{2}{\sqrt{2}} \ket{1} \bigl) \\
-    		&= \frac{2}{2} \cdot \ket{1} \\
-   		&= \ket{0} &&\qedhere
+	\ket{i} &= \frac{1}{\sqrt{2}} \bigr(\ket{0} + i\ket{1} \bigl) \\
+	&= \frac{1}{\sqrt{2}} \bigl(\frac{1}{\sqrt{2}} \bigl(\ket{+} + \ket{-} \bigr) + \frac{i}{\sqrt{2}} \bigl(\ket{+} - \ket{-} \bigr) \bigr) \\
+	&= \frac{1 + i}{2}\ket{+} + \frac{1 - i}{2} \ket{-}
 \end{align*}
 
+\begin{align*}
+	\ket{-i} &= \frac{1}{\sqrt{2}} \bigr(\ket{0} - i\ket{1} \bigl) \\
+	&= \frac{1}{\sqrt{2}} \bigl(\frac{1}{\sqrt{2}} \bigl(\ket{+} + \ket{-} \bigr) - \frac{i}{\sqrt{2}} \bigl(\ket{+} - \ket{-} \bigr) \bigr) \\
+	&= \frac{1 - i}{2}\ket{+} + \frac{1 + i}{2} \ket{-}
+\end{align*}
 
+\begin{align*}
+	\frac{1}{\sqrt{2}} \bigl(\ket{i} - \ket{-i} \bigr) &= \frac{1}{\sqrt{2}} \bigl(\frac{1 - i}{2}\ket{+} + \frac{1 + i}{2} \ket{-} - \frac{1 + i}{2}\ket{+} + \frac{1 + i}{2} \ket{-}\bigr) \\
+	&= \frac{1}{2\sqrt{2}} \bigl(2i\ket{+} - 2i \ket{-} \\
+	& = \frac{i}{\sqrt{2}}\ket{+} - \frac{i}{\sqrt{2}}\ket{-}
+\end{align*}
 
+The probability of this outcome for $\ket{i}$:
+
+\begin{align*}
+  |\frac{i}{\sqrt{2}}|^2 = \frac{1}{2} \\
+\end{align*}
+
+The probability of this outcome for $\ket{-i}$:
+
+\begin{align*}
+  |\frac{-i}{\sqrt{2}}|^2 = \frac{1}{2}
+\end{align*}
 
 		\item $\frac{1}{\sqrt{2}} \bigl(\ket{i} - \ket{-i}\bigr)$ and $\{\ket{+}, \ket{-}\}$.
+
+%e
+
+\begin{align*}
+	\ket{i} = \frac{1 + i}{2}\ket{+} + \frac{1 - i}{2} \ket{-} &&\text{(as proven in part (d))} \\
+	\ket{-i} = \frac{1 - i}{2}\ket{+} + \frac{1 + i}{2} \ket{-} &&\text{(as proven in part (d))}
+\end{align*}
+
+\begin{align*}
+	\frac{1}{\sqrt{2}} \bigl( \ket{i} - \ket{-i} \bigr) &= \frac{1}{\sqrt{2}} \bigl( \bigl( \frac{1 + i}{2} \ket{+} + \frac{1 - i}{2} \ket{-} \bigr) - \bigl( \frac{1 - i}{2} \ket{+} + \frac{1 + i}{2} \ket{-} \bigr) \bigr) \\
+	&= \frac{i}{\sqrt{2}} \ket{+} + \frac{-i}{\sqrt{2}} \ket{-}
+\end{align*}
+
+The probability of this outcome for $\ket{+}$:
+
+\begin{align*}
+  |\frac{i}{\sqrt{2}}|^2 = \frac{1}{2} \\
+\end{align*}
+
+The probability of this outcome for $\ket{-}$:
+
+\begin{align*}
+  |\frac{-i}{\sqrt{2}}|^2 = \frac{1}{2}
+\end{align*}
+
 		\item $\frac{\sqrt{3}}{2} \ket{+} - \frac{1}{2} \ket{-}$ and $\{\ket{i}, \ket{-i}\}$.
+
+%f
+\begin{align*}
+	\ket{0} = \frac{1}{\sqrt{2}} \bigl(\ket{i} + \ket{-i}\bigr) &&\text{(as proven in part (b))} \\
+        \ket{1} = \frac{-i}{\sqrt{2}} \bigl(\ket{i} - \ket{-i}\bigr)&&\text{(as proven in part (b))} \\
+\end{align*}
+
+\begin{align*}
+	\ket{+} &= \frac{1}{\sqrt{2}} \bigl(\ket{0} + \ket{1}\bigr) \\
+	&= \frac{1}{\sqrt{2}} \bigl( \frac{1}{\sqrt{2}} \bigl( \ket{i} + \ket{-i} \bigr) + \frac{-i}{\sqrt{2}} \bigl( \ket{i} - \ket{-i} \bigr) \bigr) \\
+	&= \frac{1 - i}{2}\ket{i} + \frac{1 + i}{2}\ket{-i}
+\end{align*}
+
+\begin{align*}
+	\ket{-} &= \frac{1}{\sqrt{2}} \bigl(\ket{0} - \ket{1}\bigr) \\
+	&= \frac{1}{\sqrt{2}} \bigl( \frac{1}{\sqrt{2}} \bigl( \ket{i} + \ket{-i} \bigr) - \frac{-i}{\sqrt{2}} \bigl( \ket{i} - \ket{-i} \bigr) \bigr) \\
+	&= \frac{1 + i}{2}\ket{i} + \frac{1 - i}{2}\ket{-i}
+\end{align*}
+
+\begin{align*}
+	\frac{\sqrt{3}}{2} \ket{+} - \frac{1}{2} \ket{-} &= \frac{3}{\sqrt{2}} \bigl( \frac{1 - i}{2}\ket{i} + \frac{1 + i}{2} \ket{-i} \bigr) - \frac{1}{2} \bigl( \frac{1 + i}{2} \ket{i} + \frac{1 - i}{2} \ket{-i} \bigr) \\
+	&= \frac{\sqrt{3} - i\sqrt{3} - 1 - i}{4}\ket{i} + \frac{\sqrt{3} + i\sqrt{3} - 1 + i}{4} \ket{-i} \\
+	&= \bigl( \frac{\sqrt{3} - 1}{4} - \frac{\sqrt{3} + 1}{4}i \bigr) \ket{i} + \bigl(\frac{\sqrt{3} - 1}{4} + \frac{\sqrt{3} + 1}{4}i \bigr) \ket{-i}
+\end{align*}
+
+The probability of this outcome for $\ket{i}$:
+
+\begin{align*}
+  |\frac{\sqrt{3} - 1}{4} - \frac{\sqrt{3} + 1}{4}i |^2 = \frac{1}{2} \\
+\end{align*}
+
+The probability of this outcome for $\ket{-i}$:
+
+\begin{align*}
+  |\frac{\sqrt{3} - 1}{4} + \frac{\sqrt{3} + 1}{4}i |^2 = \frac{1}{2} \\
+\end{align*}
+
 	\end{enumerate}
 
 \end{enumerate}

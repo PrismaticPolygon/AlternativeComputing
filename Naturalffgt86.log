@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2019.11.18)  28 JAN 2020 11:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2019.11.18)  4 FEB 2020 19:42
 entering extended mode
 **./Naturalffgt86.tex
 (Naturalffgt86.tex
@@ -471,16 +471,30 @@ Package caption Info: End \AtBeginDocument code.
  [1
 
 {C:/Users/user/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-[2] (Naturalffgt86.aux)
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+LaTeX Warning: Citation `srinivasan_2003' on page 2 undefined on input line 140
+.
+
+LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 1
+43.
+("C:\Users\user\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\omscmr.fd"
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 143.
+
+[2
+
+] [3] (Naturalffgt86.aux)
+
+LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 5340 strings out of 492450
- 81155 string characters out of 3120471
- 160800 words of memory out of 3000000
- 9616 multiletter control sequences out of 15000+200000
+ 5358 strings out of 492450
+ 81495 string characters out of 3120471
+ 161800 words of memory out of 3000000
+ 9631 multiletter control sequences out of 15000+200000
  11650 words of font info for 41 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  51i,10n,48p,305b,389s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -498,9 +512,9 @@ ic/amsfonts/cm/cmss12.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX 2.9/font
 s/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/user/AppData/Local/Programs/MiK
 TeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/user/AppData/Local/P
 rograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on Naturalffgt86.pdf (2 pages, 132490 bytes).
+Output written on Naturalffgt86.pdf (3 pages, 138398 bytes).
 PDF statistics:
- 57 PDF objects out of 1000 (max. 8388607)
+ 60 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
