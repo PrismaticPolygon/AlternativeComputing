@@ -1,6 +1,6 @@
 \documentclass{article}
 \usepackage{braket}
-\usepackage{amsmath,amsthm,amssymb}
+\usepackage{amsmath,amsthm,amssymb,algorithm,algpseudocode}
 
 \addtolength{\oddsidemargin}{-.875in}
 	\addtolength{\evensidemargin}{-.875in}
@@ -8,6 +8,10 @@
 
 	\addtolength{\topmargin}{-.875in}
 	\addtolength{\textheight}{1.75in}
+
+\makeatletter
+\def\BState{\State\hskip-\ALG@thistlm}
+\makeatother
 
 \begin{document}
 
@@ -273,47 +277,231 @@ The probability of this outcome for $\ket{-i}$:
 \normalsize
 \end{center}
 
-\noindent\underline{Part A}: Provide a synopsis of \cite{KB07}. \hfill{\bf [50 marks]}\smallskip
+\section{Relevant background material}
 
-\noindent You should read the paper and present a condensed version of it so as to provide:
+The Artificial Bee Colony (ABC) algorithm is an optimisation algorithm based on the foraging behaviour of the honeybee swarm. It belongs to a class of heuristics that use swarm intelligence, the emergent, 'intelligent', behaviour of a swarm, a collection of (simple) individual agents, to optimise functions. There have been several attempts to model the behaviour of the honeybee swarm.
 
-\begin{itemize}
+A Bee Colony Optimisation (BCO) metaheuristic \cite{T03} capable of solving combinatorial problems  was the first bee-inspired work. This approach was further refined into Bee Swarm Optimisation (BSO) \cite{D05} , which was adapted to solve the maximum weighted unsatisfiability problem. Other such works include a metaheuristic to solve a 3-SAT problem based on bees' reproduction strategies \cite{B05} and a novel routing algorithm called BeeHive \cite{W04}. More relevant to ABC is a bee colony system in which simple insectoid robots were used to solve tasks \cite{TL05}. This paper established the first model of forage selection: interactions between food sources, employed foragers, and unemployed foragers. It also identified two behaviours: the recruitment of an unemployed bee to a food source, and the abandonment of inferior food sources.
 
-\item relevant background material\hfill[5 marks]
+However, these works all focus on \textit{combinatorial} problems. The first optimisation algorithm, the Virtual Bee Algorithm (VBA) \cite{Y05}, used the interactions of a swarm of virtual bees to optimise numeric functions. The paper discussed in this work builds upon previous work by the authors in which the ABC algorithm is first described \cite{K05} and is compared to a genetic algorithm (GA) \cite{K06}.
 
-\item a detailed pseudocode description of the ABC algorithm\hfill[15 marks]
+\section{Natural language description}
 
-\item a natural language description of the ABC algorithm\hfill[10 marks]
-
-\item details of the experiments\hfill[15 marks]
-
-\item an overview of the results.\hfill[5 marks]
-
-\end{itemize}
-You should define all concepts used and give a very brief overview of the comparator algorithms and the benchmark functions used in the experimental section. Your synopsis should be written using Latex (use the settings of this Latex file) and compiled into pdf (only the pdf should be handed in); there should be a section for each of the 5 bullet-points above (your pseudocode and natural language descriptions should cross-reference one another); and the report should be no more than 4 pages in length (excluding references). After reading your report, a reader should be able to implement the ABC algorithm. You will be given marks for clarity and quality of explanation.\bigskip
-
-\noindent\underline{Part B}: The ABC algorithm was extended in \cite{KG11} and \cite{XBY11} so as to solve the Travelling Salesman Problem. Provide a synopsis of \cite{KG11} and explain the concept of path-relinking from \cite{XBY11}. \hfill{\bf [25 marks]}\smallskip
-
-\noindent Read the papers \cite{KG11} and \cite{XBY11}.
+In the ABC algorithm, a colony consists of three types of bee:
 
 \begin{itemize}
 
-\item You should proceed with paper \cite{KG11} as in Part A, although there is no need to repeat what you have written above. You should focus on the key differences in the application of the ABC algorithm to the Travelling Salesman problem as opposed to the benchmark functions in \cite{KB07}.\hfill[15 marks]
-
-\item You should outline the concept of path-relinking from \cite{XBY11} and how it is incorporated within the ABC algorithm.\hfill[10 marks]
-
-\item Your pdf report should use no more than 2 pages (and be produced from Latex as above).
+	\item{Employee: a bee going to a food source that it previously visited.}
+	\item{Onlooker: a bee waiting in the dance area to choose a food source.}
+	\item{Scout: a bee carrying out a random search for a new food source.}
 
 \end{itemize}
 
+A \textit{food source} is defined by a position in the state space, a possible solution to the optimisation problem, and a \textit{nectar amount}, the fitness of that solution. There are three control parameters in ABC: the number of food sources, $S_n$; the number of iterations a population undergoes, $C_{max}$; and $limit$, the number of times the area around a food source is sampled before, if no better food source is discovered nearby, it is discarded.
+
+There are four phases. The initialisation phase is performed once. The employed, onlooker, and scout bee phases are repeated until $C_{max}$ has been reached, or until the nectar amount of a food source exceeds some threshold.
+
+\begin{enumerate}
+
+	\item{\textbf{Initialisation}. A randomly distributed initial population (of size $S_n$) of food sources is generated. Each food source position is a $D$-dimensional vector, where $D$ is the number of optimisation parameters. The nectar amounts of each food source are computed, and the number of trials for each food source is set to $0$.}
+
+	\item{\textbf{Employed phase}. Each employed bee goes the food source in her memory. She produces a probabilistic modification of her food source position using $2.1$ and evaluates the nectar amount of the modified position. If it is greater than her original food source, she updates her stored food source. Otherwise, she discards the new position. If the new position is discarded, a counter tracking the number of times the area around her food source has been searched is incremented. She returns to the hive and shares the nectar amount of her food source to the onlooker bees.}
+
+	\item{\textbf{Onlooker phase}. Each onlooker bee observes the dance of each employed bee. The onlooker chooses a food source using $2.2$. She goes to that source and follows the same procedure as an employed bee: she produces a modification of her food source position, evaluates the nectar amount, updates her food source if it is superior, and discards it otherwise. She also updates the counter.}
+
+	\item{\textbf{Scout bee phase}. The food source that has been sampled the most is examined. If it has been sampled more than $limit$, a scout bee find a new food source and updates the value of the old food source.}
+
+\end{enumerate}
+
+\subsection{Modifying a food source}
+
+A food source $x$ is modified into a new food source $v$ using $v_{ij} = x_{ij} + \phi_{ij}(x_{ij} - x_{kj})$, where $k \in \{1, 2, ..., S_n \}$ and $j \in \{1, 2, ..., D\}$ are randomly chosen indices. $\phi_{ij}$ is a random number in $[-1, 1]$. It controls the production of food source positions near $x_{ij}$. As $|x_{ij} - x_{kj}|$ decreases, so too does the perturbation of $x_{ij}$.
+
+\subsection{Selecting a food source}
+
+A food source is selected using roulette-wheel selection (stochastic sampling with replacement). The probability of a food source $i$ being selected is $p_i = \frac{f(i)}{\sum_{n=1}^{S_n} f(i)}$, where $f(i)$ returns the nectar amount of $i$.
+
+\section{Experiment details}
+
+\subsection{Comparator algorithms}
+
+Three population-based stochastic optimisation algorithms were compared to ABC:
+
+\begin{itemize}
+
+	\item{\textbf{Particle Swarm Optimisation (PSO)}: uses swarm intelligence. A swarm of particles moves around a search space according to formulae over their position and velocity and the best known positions in the search space. PSO is governed by $\omega$, the inertial weight of a particle, two learning factors $\phi_1$ and $\phi_2$, and the formulae relating to acceleration, velocity, and position.}
+	\item{\textbf{Genetic Algorithms (GA)}: belong to a class of algorithms called Evolutionary Algorithms (EA) which simulate evolution. Solutions are encoded as the genes of individuals, which mutate, breed, and die. GAs are governed by the probability of crossover $P_c$, the likelihood of two individuals being combined, the probability of mutation $P_m$, the likelihood of a gene changing, and the \textit{operators} selected for mutation, crossover, and selection.}
+	\item{\textbf{Particle Swarm Evolutionary Algorithms (PS-EA)}: a hybrid of PSO and EA in which particles are adaptively updated depending on their fitness. This algorithm seeks to dynamically adjust the inheritance probabilities based on the convergence rate of an algorithm in a particular iteration.}
+
+\end{itemize}
+
+\subsection{Benchmark functions}
+
+A function is \textit{multimodal} if it has multiple optima and \textit{multivariable} if it has multiple input parameters. Five classic benchmark functions \cite{SS03} were used to test the performance of ABC against PSO, PS-EA, and GA:
+
+\begin{itemize}
+
+	\item{\textbf{Griewank function}: has a product term that introduces interdependence among the variables, penalising techniques which optimise each variable independently.}
+	\item{\textbf{Rastrigin function}: 0 at its global minimum at the origin. Produces many local, regularly distributed minima, so an optimisation algorithm can easily be trapped.}
+	\item{\textbf{Rosenbrock function}: has a global optimum is in a long, narrow, parabolic, flat valley. It is easy to find a local optimum, but difficult to converge. Variables are therefore strongly dependent. Gradients generally do not point towards the optimum.}
+	\item{\textbf{Ackley function}: has an exponential term that covers its surface with numerous local optima. It tests how efficiently an algorithm both explores and exploits}.
+	\item{\textbf{Schwefel function}: has a surface comprised of a great number of peaks and valleys, with the second-best minimum far from the global minimum, which itself is near the bounds of the domain.}
+
+\end{itemize}
+
+\subsection{Test parameters}
+
+Common control parameters of the algorithms are population size ($S_n$ in ABC) and the number of generations ($C_{max}$). In the experiments, a $C_{max}$ of $500$, $750$, and $1000$ was used with the dimensions $10$, $20$, and $30$, respectively. Population size was held constant at $125$. A second run of ABC used $1000$, $1500$, and $2000$ cycles with dimensions $10$, $20$, and $30$ respectively.
+
+ABC split bees evenly into $50\%$ onlooker and $50\%$ employed, with a single scout. Each experiment was repeated 30 times with different random seeds.
+
+The GA used single-point uniform crossover (swapping one gene at the same point in two individuals) with a probability $P_c = 0.95$. The paper states that individuals were selected randomly, but this would defeat the whole purpose of a GA, so this is deemed to be incorrect. Individuals were ranked with a linear fitness function. Gaussian mutation occurred with probability $P_m=0.1$
+
+The PSO used a inertia weight $\omega$ which varied linearly from $0.9$ to $0.7$ with the number of iterations. The learning factors $\phi_1$ and $\phi_2$ were both set to $2$. The lower and upper velocity bounds ($V_{min}$ and $V_{max}$) of the particles are set to the lower and upper of $x$ ($x_{min}$ and $x_{max}$).
+
+\section{Results overview}
+
+The paper found that the ABC algorithm performs better than PS-EA on the Greiwank and Ackley functions. It is only outperformed on the Schwefel function by PS-EA and GA for dimensions 20 and 30. After increasing the $C_{max}$, the ABC algorithm converged to the minimum of the Schwefel function as well. Increasing $C_{max}$ considerably improved the performance of ABC, though the performance of PSO and PS-EA remained stagnant, suggesting premature convergence. It is successful in optimising multivariable multimodal functions.
+
+
+\section{Detailed pseudocode description}
+
+See overleaf.
+
+\begin{algorithm}
+\caption{ABC}\label{euclid}
+\begin{algorithmic}[1]
+\Procedure{ABC}{}
+
+% The number of food sources
+\State $S_n$: number of food sources
+% The number of trials before abandoning a food sources
+\State $limit$: number of trials before abandoning a food source
+% The number of cycles
+\State $C_{max}$: number of cycles
+
+\State $f(x)$: function returning the fitness of a solution $x$
+\State $n()$: function returning a random solution
+\State $m(x)$: function returning a modification of $x$ as per $2.1$
+\State $p(x)$: function returning the probability of selecting a solution $x$ as per $2.2$
+
+\BState \emph{Initialisation}:
+
+% Generate a randomly distributed initial population of S_n solutions.
+\For{$s \gets 1$ to $S_N$}         
+	
+	% Set the solution of employee s to a random solution           
+	\State $X(s) \gets n()$
+	% Compute the fitness of that random solution
+	\State $f_s \gets f(X(s))$
+	% Set the value of trial[s] to 0
+	\State $trial(s) \gets 0$
+	% Increment the number of evaluations that have been performed
+
+\EndFor
+
+\BState \emph{Loop}:
+
+\State $c \gets 0$
+\While{$c < C_{max}$}
+
+	\State \textit{//Employed bee phase}
+
+	\For{$s = 1$ to $S_N$}     
+		
+		% Get a neighbouring solution  
+		\State $x' \gets m(X(s))$
+
+		\If{$f(x') < f_s$}
+
+			\State $X(s) \gets x'$
+			\State $f_s \gets f(x')$
+			\State $trial(s) \gets 0$
+
+		\Else
+
+			\State $trial(s) \gets trial(s) + 1$
+
+		\EndIf
+
+	\EndFor
+
+	\State \textit{//Onlooker bee phase}
+
+	\State $s \gets 1$
+	\State $t \gets 1$
+
+	\While{$t < SN$}
+
+		\State $r \gets rand(0, 1)$
+
+		\If{$r < p(s)$}
+
+			\State $t \gets t + 1$
+			\State $x' \gets n()$
+	
+			\If{$f(x') < f_s$}
+
+				\State $X(s) \gets x'$
+				\State $f_s \gets f(x')$
+				\State $trial(s) \gets 0$
+	
+			\EndIf
+
+		\EndIf
+
+	\EndWhile
+
+	\State \textit{//Scout bee phase}
+
+	\State $m \gets \{s: trial(s) = max(trial)\}$
+
+	\If{$trial(m) >= limit$}
+
+		\State $X(m) \gets n()$
+		\State $f_m \gets f(X(m))$
+		\State $trial(m) \gets 0$
+
+	\EndIf
+
+	\State Store the best solution
+	\State $ c \gets c + 1$
+
+\EndWhile
+
+\State Return the best solution
+
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\clearpage
 
 \begin{thebibliography}{99}
 
-\bibitem{KB07} D. Karaboga and B. Basturk, A powerful and efficient algorithm for numerical function optimization: artificial been colony (ABC) algorithm, \emph{J. Glob. Optim.\/} 39 (2007) 459--471.
+\bibitem{KB07} D. Karaboga and B. Basturk, A powerful and efficient algorithm for numerical function optimization: artificial bee colony (ABC) algorithm, \emph{J. Glob. Optim.\/} 39 (2007) 459--471.
 
 \bibitem{KG11} D. Karaboga and B. Gorkemli, A combinatorial artifical bee colony algorithm for Travelling Salesman problem, \emph{Proc. of Int. Symp. on Innovations in Intelligent Systems and Applications \emph{(}INISTA\/}), IEEE Press (2011) 50--53.
 
 \bibitem{XBY11} X. Zhang, Q. Bai and X. Yun, A new hybrid artificial bee colony algorithm for the Traveling Salesman Problem, \emph{Proc. of \emph{3}rd Int. Conf. on Communication Software and Networks \emph{(}ICCSN\/}), IEEE Press (2011) 155--159.
+
+\bibitem{TL05} V. Tereshko and A. Loengarov, Collection Decision-Making In Honey Bee Foraging Dynamics, \textit{Comput. Inf. Sys J.}  (2005) 9(3), 1-7
+
+\bibitem{T03} D. Teodorovic, Transport Modeling By Multi-Agent Systems: A Swarm Intelligence Approach, \textit{Transport. Plan. Technol.}  (2003) 26(4), 289-312
+
+\bibitem{B05} K. Benatchba, L. Admane, M. Koudil, Using bees to solve a data-mining problem expressed as a max-sat one, artificial intelligence and knowledge engineering applications: a bioinspired approach, \textit{Proceedings of the First International Work-Conference on the Interplay Between Natural and Artificial Computation}, IWINAC (2005)
+
+\bibitem{W04} H.F. Wedde, M. Farooq, Y. Zhang, BeeHive: an efficient fault-tolerant routing algorithm inspired by honeybee behaviour, ant colony, optimisation, and swarm intelligence, \textit{Proceedings of the 4th International Workshop}, ANTS (2004)
+
+\bibitem{D05} H. Drias, S. Sadeg, S. Yahli, Cooperative bees swarm for solving the maximum weighted satisifiability problem, computational intelligence and bioinspired Systems, \textit{Proceedings of the 8th International Workshop on Artificial Neural Networks}, IWANN (2005)
+
+\bibitem{Y05} X. S. Yang, Engineering optimizations via nature-inspired virtual bee algorithms, \textit{Lecture Notes in Computer Science}, pp. 317-323. Springer, GmbH (2005)
+
+\bibitem{K05} D. Karaboga, An idea based on honey bee swarm for numerical optimization, \textit{Technical Report-TR06}, Erciyes University (2005)
+
+\bibitem{K06} B. Basturk and D. Karaboga, An artificial bee colony (ABC) algorithm for numeric function optimization, \textit{Proceedings of the IEE Swarm Intelligence Symposium} (2006)
+
+\bibitem{SS03} D. Srinivasan and T. H. Seow, Evolutionary Computation, \textit{CEC} (2003)
 
 \end{thebibliography}
 
